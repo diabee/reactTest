@@ -6,6 +6,7 @@ import BarChart from './barChart';
 export class graph extends React.Component {
          constructor(props) {
            super(props);
+           props = {xVal : 0 ,yVal : 0 };
            this.state = { xVal: "", yVal: "" };
          }
          handleMessage(e) {
@@ -20,11 +21,11 @@ export class graph extends React.Component {
          }
          render() {
            return <div>
-               <Input name='xVal' onChange={this.handleMessage.bind(this)} />
-               <Input name='yVal' onChange={this.handleMessage.bind(this)} />
-               <Button onClick={this.publish.bind(this)}>send</Button>
+               <Input placehold='選擇月' name="xVal"  onChange={this.handleMessage.bind(this)} />
+               <Input placehold='輸入金額(k TWD)' name="yVal" onChange={this.handleMessage.bind(this)} />
+               
                <div>
-                   <BarChart xVal={this.state.xVal} yVal={this.state.yVal}/>
+                 <BarChart xVal={this.state.xVal} yVal={this.state.yVal} />
                </div>
              </div>;
          }
