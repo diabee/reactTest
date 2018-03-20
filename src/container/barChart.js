@@ -12,15 +12,14 @@ export class barChart extends Component {
   render() {
     return (
       <div>
-        {this.props.xVal}
-        {this.props.yVal}
+        {this.props.xVal}月分營收 {this.props.yVal} K
+        <Button onClick={this.barchartDraw.bind(this)}>refresh</Button>
         <div>
           <canvas id="canvas" width="500" height="300">
             The canvas element is not supported by your browser!
           </canvas>
 
           <legend htmlFor="canvas" />
-          <Button onClick={this.barchartDraw.bind(this)}>refresh</Button>
         </div>
       </div>
     );
@@ -32,18 +31,18 @@ export class barChart extends Component {
       gridScale: 5,
       gridColor: "#eeeeee",
       data: {
-        "1": 0,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "6": 0,
-        "7": 0,
-        "8": 0,
-        "9": 0,
-        "10": 0,
-        "11": 0,
-        "12": 0
+        "1": 10,
+        "2": 20,
+        "3": 30,
+        "4": 40,
+        "5": 50,
+        "6": 60,
+        "7": 70,
+        "8": 80,
+        "9": 90,
+        "10": 100,
+        "11": 110,
+        "12": 120
       },
       colors: [
         "red",
@@ -83,16 +82,13 @@ export class barChart extends Component {
     ctx.restore();
   }
   clearDraw() {
-    debugger;
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
 
     ctx.clearRect(0, 0, canvas.width, 1000);
   }
   barchartDraw(e) {
-    debugger;
     this.clearDraw();
-
     this.options.data[this.props.xVal] = this.props.yVal;
     this.canvas = document.getElementById("canvas");
     this.ctx = this.canvas.getContext("2d");

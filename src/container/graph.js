@@ -2,7 +2,7 @@ import React,{Component} from 'react' ;
 import { Button, Input , Select } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import BarChart from './barChart';
-
+import LineChart from './lineChart';
 export class graph extends React.Component {
          constructor(props) {
            super(props);
@@ -26,6 +26,9 @@ export class graph extends React.Component {
                
                <div>
                  <BarChart xVal={this.state.xVal} yVal={this.state.yVal} />
+               </div>
+               <div>
+                 <LineChart xVal={this.state.xVal} yVal={this.state.yVal} />
                </div>
              </div>;
          }
