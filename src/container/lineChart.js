@@ -32,14 +32,15 @@ export class lineChart extends Component {
 
         ctx.clearRect(0, 0, canvas.width, 1000);
     }
-
+    
     componentDidMount() {
         
-        var Data = (this.Data={data : [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]});
+        this.Data = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
         this.linechartDraw();
     }
 
     linechartDraw() {
+        this.Data[this.props.xVal-1] = this.props.yVal;
         this.clearDraw();
         var Elem = document.getElementById('lineCanvas');
 
@@ -143,9 +144,9 @@ export class lineChart extends Component {
             * 折点到原点的距离 = (3000点的y到原点的y的长度)*当前金额/3000
          */
         context.beginPath();
-        for (var i = 0; i < Data.length; i++) {
+        for (var i = 0; i < this.Data.length; i++) {
             // 获取折点的x和y值
-            var pointY = origin.y - (origin.y - (axisY.y + moneyY)) * Data[i] / max;
+            var pointY = origin.y - (origin.y - (axisY.y + moneyY)) * this.Data[i] / max;
             var pointX = pointsX[i];
             // 绘制折线
             if (i == 0) {
@@ -158,13 +159,13 @@ export class lineChart extends Component {
                 context.lineTo(pointX, pointY);
             }
             // 绘制折点的金额
-            context.fillText(Data[i], pointX, pointY);
+            context.fillText(this.Data[i], pointX, pointY);
         }
         context.stroke();
         // 绘制12个折点的圆
-        for (var i = 0; i < Data.length; i++) {
+        for (var i = 0; i < this.Data.length; i++) {
             // 获取折点的x和y值
-            var pointY = origin.y - (origin.y - (axisY.y + moneyY)) * Data[i] / max;
+            var pointY = origin.y - (origin.y - (axisY.y + moneyY)) * this.Data[i] / max;
             var pointX = pointsX[i];
             // 绘制圆
             context.fillStyle = "red";
